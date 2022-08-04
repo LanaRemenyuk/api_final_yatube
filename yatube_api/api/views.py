@@ -4,7 +4,6 @@ from rest_framework import permissions, viewsets, mixins, filters
 from rest_framework.pagination import LimitOffsetPagination
 from .serializers import CommentSerializer, \
     GroupSerializer, PostSerializer, FollowSerializer
-from rest_framework.permissions import IsAuthenticated
 from .permissions import IsAuthorOrReadOnly
 
 from posts.models import Group, Post
@@ -14,7 +13,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticated, IsAuthorOrReadOnly,)
+    permission_classes = (IsAuthorOrReadOnly,)
     pagination_class = LimitOffsetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ('group',)
