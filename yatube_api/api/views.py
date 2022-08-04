@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions, viewsets, mixins, filters
 from rest_framework.pagination import LimitOffsetPagination
 from .serializers import CommentSerializer, \
@@ -15,8 +14,6 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = (IsAuthorOrReadOnly,)
     pagination_class = LimitOffsetPagination
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ('group',)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
