@@ -30,10 +30,7 @@ class Post(models.Model):
         upload_to='posts/', null=True, blank=True)
 
     def __str__(self):
-        return self.text[:15]
-
-    class Meta:
-        ordering = ['-pub_date']
+        return self.text
 
 
 class Comment(models.Model):
